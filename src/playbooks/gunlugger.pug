@@ -1,0 +1,228 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le chien de guerre';
+    var actionstitle = 'Actions du chien de guerre';
+    var createtitle = 'Créer un chien de guerre';
+    var progressionFirst = [
+      'reçois +1cool (max cool+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois une nouvelle action de chien de guerre',
+      'reçois une nouvelle action de chien de guerre',
+      'reçois un nouveau véhicule (détaille-le)',
+      'reçois un domaine (détaille-le) et richesse',
+      'reçois un gang (détaille-le) et mâle alpha',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Vonk le sculpteur, Batty, Jonker,
+  | A.T., Rue Wakeman, Navarre, Man,
+  | Kartak, Barberousse, Keeler, Grekkor,
+  | Crille, Destin, Chapelain,
+  | Rex, Fido, Boxer, Dobermann, Trey,
+  | Tueur, Butch, Fifi, Poilu, Duke, Wolf,
+  | Rover, Max, Buddy
+
+block helpgender
+  | homme, femme, ambigu, transgressif, dissimulé
+
+block helpphysique
+  | dur, épais, longiligne,
+  | ravagé, trop musclé, compact,
+  | énorme
+
+block helpface
+  | couturé, brut, osseux,
+  | impassible, fatigué, défoncé
+
+block helpeyes
+  | fou, enragé, sage, triste,
+  | porcin, malicieux
+
+block helpclothes
+  | armure disparate et rafistolée,
+  | armure ancienne et usée, armure artisanale et
+  | faite main
+
+block caracsset
+  ul.dot
+    li
+      | Cool+1, Dur+2, Sexy-1, Rusé+1, Zarb=0
+    li
+      | Cool-1, Dur+2, Sexy-2, Rusé+1, Zarb+2
+    li
+      | Cool+1, Dur+2, Sexy-2, Rusé+2, Zarb-1
+    li
+      | Cool+2, Dur+2, Sexy-2, Rusé=0, Zarb=0
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1, 2 ou toutes les 3 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous m’a laissé me vider de mon sang sans rien faire ?
+      | Pour ce personnage, marques Hx-2.
+    li
+      | Lequel d’entre vous a combattu fidèlement à mes côtés ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous me semble le/la plus beau/belle et/ou le/la plus intelligent/intelligente ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx-1. Tu n’as pas particulièrement besoin de comprendre la plupart des gens.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | tu reçois +1 au prochain jet. Si
+    | tu veux, l’autre chope aussi +1 à son
+    | prochain jet.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong Endurci par le feu :
+      |
+      | quand tu agis face au danger ou quand tu surveilles les arrières d’un allié, dés+dur au lieu de dés+cool.
+    li
+      +checkbox
+      strong Allez tous vous faire fout** :
+      |
+      | Désigne ton échappatoire et lance dés+dur. #[strong Sur 10+], tu es parti. #[strong Sur 7-9], tu peux partir ou rester, mais si tu pars, tu devras laisser quelque chose ou prendre quelque chose avec toi, le MC te dira quoi. #[strong Sur 6-], tu es pris sur le fait, en train de te casser mais pas encore parti.
+    li
+      +checkbox
+      strong Instinct du soldat :
+      |
+      | quand tu ouvres ton cerveau au maelström psychique,
+      | lance dés+dur au lieu de dés+zarb, mais seulement pendant une bataille.
+    li
+      +checkbox
+      strong Gros malade :
+      |
+      | tu reçois +1dur (dur+3).
+    li
+      +checkbox
+      strong Préparé à l’inévitable :
+      |
+      | tu as un kit de premiers soins bien fourni et de
+      | bonne qualité. Ça marche comme un kit d’ange gardien (cf) avec 2-réserves
+      | maximum.
+    li
+      +checkbox
+      strong Soif de sang :
+      |
+      | quand tu infliges des dégâts, inflige +1dégât.
+    li
+      +checkbox
+      strong NE PAS FAIRE CHI** :
+      |
+      | pendant une bataille, tu comptes comme un petit gang,
+      | avec les dégâts et l’armure de ton équipement.
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | un put*** de gros flingue
+    li
+      | deux flingues qui ne rigolent pas
+    li
+      | une arme de réserve
+    li
+      | du bric-à-brac valant 1-troc
+    li
+      | une armure qui vaut 2-armures (détaille-la)
+
+block uniqueability
+  h3 Armement
+
+  -
+    var fuckoffWeapons = [
+      'fusil de précision avec silencieux (3-dégâts loin high-tech)',
+      'mitrailleuse (3-dégâts proche/loin zone salissant)',
+      'fusil d’assaut (3-dégâts proche/loin bruyant full-auto)',
+      'lance-grenades (4-dégâts proche zone salissant)'
+    ];
+    var seriousWeapons = [
+      'fusil de chasse (2-dégâts loin bruyant)',
+      'fusil à pompe (3-dégâts proche salissant)',
+      'pistolet mitrailleur (2-dégâts proche full-auto bruyant)',
+      'tube à grenades (4-dégâts proche zone recharge salissant)',
+      'balles perce-blindage (perforant) ajoute perforant à tous tes flingues',
+      'silencieux (high-tech) enlève bruyant à un de tes flingues'
+    ];
+    var backupWeapons = [
+      'automatique (2-dégâts proche bruyant)',
+      'grosse lame (2-dégâts contact)',
+      'machette (3-dégâts contact salissant)',
+      'plein de couteaux (2-dégâts contact infini)',
+      'grenades (4-dégâts contact zone recharge salissant)'
+    ];
+
+  h4 Put*** de gros flingues
+  p.no-margin (1 au choix) :
+  ul
+    each weapon in fuckoffWeapons
+      li
+        +checkbox
+        span=weapon
+
+  h4 Flingues qui ne rigolent pas
+  p.no-margin (2 au choix) :
+  ul
+    each weapon in seriousWeapons
+      li
+        +checkbox
+        span=weapon
+
+  h4 Armes de réserve
+  p.no-margin (1 au choix) :
+  ul
+    each weapon in backupWeapons
+      li
+        +checkbox
+        span=weapon
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Extorquer, braquer ou voler une riche population. 
+      li Commettre un meurtre commandité par un riche PNJ.
+      li Servir de garde du corps à un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

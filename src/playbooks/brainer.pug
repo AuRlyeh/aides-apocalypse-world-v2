@@ -1,0 +1,247 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le céphale';
+    var actionstitle = 'Actions du céphale';
+    var createtitle = 'Créer un céphale';
+    var progressionFirst = [
+      'reçois +1cool (max cool+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois une nouvelle action de céphale',
+      'reçois une nouvelle action de céphale',
+      'reçois 2 nouveaux matos de céphale ou 2 de remplacement (choisi)',
+      'reçois un domaine (détaille-le) et richesse',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Smith, Dupont, Jackson, Marsh, Peeters, Vivant, Joyeuse, Iris, Marie, Amiette, Suselle, Cybelle, Pâle, Pêcheur, Charmeur, Compassion, Attelle, Couchant
+
+block helpgender
+  | homme, femme, ambigu, transgressif, dissimulé
+
+block helpphysique
+  | anguleux et ingrat, doux, fin, estropié, gras
+
+block helpface
+  | balafré, lisse, pâle, osseux, mou et moite, adorable
+
+block helpeyes
+  | doux, mort, profond, attentionné, pâle, détruit, larmoyant
+
+block helpclothes
+  | très guindés, de clinique, fétichistes, bondages, tenue de protection inadaptée à l’environnement local
+
+block caracsset
+  ul.dot
+    li
+      | Cool+1, Dur+1, Sexy-2, Rusé+1, Zarb+2
+    li
+      | Cool=0, Dur=0, Sexy+1, Rusé=0, Zarb+2
+    li
+      | Cool+1, Dur-2, Sexy-1, Rusé+2, Zarb+2
+    li
+      | Cool+2, Dur-1, Sexy-1, Rusé=0, Zarb+2
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1, 2 ou toutes les 3 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous a dormi en ma présence (consciemment ou non) ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous observé-je en secret ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous m’aime le moins et me fais le moins confiance ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx+1. Tu connais étrangement les gens plus que ce que l’on pourrait croire.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | tu lui fais automatiquement
+    | une sonde cérébrale en profondeur,
+    | que tu aies pris cette action-là
+    | ou pas. Dés+zarb comme d’habitude.
+    | Mais le MC choisit les questions auxquelles
+    | l’autre joueur doit répondre.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong Transfixion sexuelle aberrante :
+      |
+      | quand tu séduis quelqu’un, dés+zarb au
+      | lieu de dés+sexy.
+    li
+      +checkbox
+      strong Réception cérébrale passive :
+      |
+      | quand tu veux cerner quelqu’un, dés+zarb
+      | au lieu de dés+rusé. Ta victime doit être capable de te voir, mais tu n’as pas
+      | besoin d’interagir avec elle.
+    li
+      +checkbox
+      strong Harmonisation cérébrale surnaturelle :
+      |
+      | tu reçois +1zarb (zarb+3).
+    li
+      +checkbox
+      strong Sonde cérébrale en profondeur :
+      | 
+      | quand tu as le temps et un peu d’intimité
+      | avec quelqu’un — volontairement, comme quand tu le tiens dans tes
+      | bras, ou pas, comme quand il est attaché à une table — tu peux lire en lui
+      | plus profondément qu’à l’habitude. Dés+zarb. #[strong Sur 10+], tu retiens 3. #[strong Sur 7-9],
+      | tu retiens 1. Quand tu lis en lui, dépense ce que tu as retenu pour poser une
+      | question à son joueur, 1 pour 1 :
+      ul.dot
+        li
+          | c’était quoi, le pire moment de ton personnage ?
+        li
+          | de quoi ton personnage cherche-t-il à se faire pardonner et par qui ?
+        li
+          | quelles douleurs secrètes cache ton personnage ?
+        li
+          | quelles sont les failles de ton personnage, dans sa tête et dans son coeur ?
+      | #[strong Sur 6-], tu infliges 1-dégât perforant à ta victime et tu n’y gagnes rien.
+    li
+      +checkbox
+      strong Murmure par projection cérébrale :
+      |
+      | tu peux jeter les dés+zarb pour obtenir
+      | la même chose qu’en agressant quelqu’un, sans l’agresser directement.
+      | Ta victime doit être capable de te voir, mais tu n’es pas obligé d’interagir avec
+      | elle. Si ta victime te tient tête, ton esprit compte comme une arme (1-dégât
+      | perforant proche bruyant-facultatif).
+    li
+      .float-right
+        .editbox-xs
+          label Retenues
+      +checkbox
+      strong Marionnettiste cérébral :
+      |
+      | quand tu as du temps et un peu d’intimité avec
+      | quelqu’un — volontairement ou non — tu peux implanter un
+      | ordre dans son esprit. Dés+zarb. #[strong Sur 10+], tu retiens 3. #[strong Sur 7-9], tu retiens 1.
+      | Quand tu veux, quelles que soient les circonstances, tu peux dépenser ce que
+      | tu as retenu, 1 pour 1, pour :
+      ul.dot
+        li infliger 1-dégât perforant à ta victime
+        li que la victime reçoive -1 à son jet là maintenant
+      | Si ta victime suit ton ordre, ça dépense tout ce que tu retiens encore.
+      | #[strong Sur 6-], tu infliges 1-dégât perforant à ta victime et tu n’y gagnes rien.
+
+block startinggear
+  p.help-text
+    | Choisis une petite arme fantaisie :
+  ul.help-text
+    li
+      +checkbox
+      span 9mm avec silencieux (2-dégâts proche high-tech)
+    li
+      +checkbox
+      span dague ouvragée (2-dégâts contact précieux)
+    li
+      +checkbox
+      span lames dissimulées (2-dégâts contact infini)
+    li
+      +checkbox
+      span scalpels (3-dégâts intime high-tech)
+    li
+      +checkbox
+      span pistolet antique (2-dégâts proche recharge bruyant précieux)
+  p.help-text
+    | Tu débutes aussi avec :
+  ul.help-text.dot
+    li
+      | 2 matos de céphale
+    li
+      | du bric-à-brac valant 8-troc
+    li
+      | des fringues qui collent à ton look, y compris un accessoire valant 1-armure si tu le souhaites (détaille-le)
+
+block uniqueability
+  h3 Matos de céphale
+  p.help-text Choisis deux matos de céphale :
+  ul
+    li
+      +checkbox
+      span seringue à implant (toucher high-tech)
+        br
+        | après avoir touché quelqu’un avec, si une action de céphale te permet d’infliger des
+        | dégâts, inflige +1dégât.
+    li
+      +checkbox
+      span relais cérébral (zone proche high-tech)
+        br
+        | pour les besoins d’une action de céphale : si quelqu’un peut voir ton relais cérébral,
+        | il peut te voir toi.
+    li
+      +checkbox
+      span drogues de réceptivité (toucher high-tech)
+        br
+        | toucher quelqu’un te donne +1-retenue si tu utilises une actions de céphale sur lui.
+    li
+      +checkbox
+      span gant de violation (contact high-tech)
+        br
+        | pour les besoins d’une action de céphale : toucher simplement la peau de ta victime
+        | compte comme avoir du temps et un peu d’intimité avec elle.
+    li
+      +checkbox
+      span projecteur d’ondes-douleur (1-dégât perforant zone bruyant recharge
+        | high-tech)
+        br
+        | explose comme une grenade rechargeable et touche tout le monde sauf toi.
+    li
+      +checkbox
+      span bouchons d’oreille interne (porté high-tech)
+        br
+        | protège le porteur contre toutes les actions et tous les matos de céphale.
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Interroger les prisonniers de guerre d’un seigneur de guerre.
+      li Extorquer ou faire chanter un riche PNJ.
+      li Servir de céphale à domicile à un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

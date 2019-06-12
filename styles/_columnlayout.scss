@@ -1,0 +1,168 @@
+$a4LwidthSize: 297mm;
+$a4LheightSize: 210mm;
+$printermarginSize: 5mm;
+
+@page {
+  size: A4 landscape;
+  margin: $printermarginSize;
+}
+
+// Pages sizes
+.printer-margin-box {
+  page-break-before: always;
+
+  width: $a4LwidthSize - (2 * $printermarginSize);
+  height: $a4LheightSize - (2 * $printermarginSize);
+
+  @if $debug {
+    // See a dashed border around a page
+    border: 1pt dashed grey;
+  }
+}
+
+.row-container {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
+  * {
+    flex: none;
+  }
+
+  .grow-1 {
+    flex: 1;
+  }
+
+  .grow-2 {
+    flex: 2;
+  }
+
+  .grow-3 {
+    flex: 3;
+  }
+
+  .grow-4 {
+    flex: 4;
+  }
+
+  .grow-5 {
+    flex: 5;
+  }
+
+  .grow-6 {
+    flex: 6;
+  }
+
+  &.justify-center {
+    align-items: center;
+  }
+}
+
+.columns {
+  display: flex;
+  flex-flow: row wrap;
+
+  align-items: stretch;
+  justify-content: stretch;
+
+  .col {
+    flex: 1 1 0;
+
+    margin-right: 1em;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  .grow-2 {
+    flex: 2;
+  }
+
+  .grow-3 {
+    flex: 3;
+  }
+
+  .grow-4 {
+    flex: 4;
+  }
+
+  .grow-5 {
+    flex: 5;
+  }
+
+  .grow-6 {
+    flex: 6;
+  }
+
+  .grow-7 {
+    flex: 7;
+  }
+
+  .align-center {
+    align-self: center;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+}
+// /Pages sizes
+
+.col-1 {
+  width: 8.33%;
+}
+
+.col-2 {
+  width: 16.66%;
+}
+
+.col-3 {
+  width: 24.99%;
+}
+
+.col-4 {
+  width: 33.32%;
+}
+
+.col-5 {
+  width: 41.65%;
+}
+
+.col-6 {
+  width: 49.98%;
+}
+
+.col-7 {
+  width: 58.31%;
+}
+
+.col-8 {
+  width: 66.64%;
+}
+
+.col-9 {
+  width: 74.97%;
+}
+
+.col-10 {
+  width: 83.3%;
+}
+
+.col-11 {
+  width: 91.63%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+* > :first-child {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+* > :last-child {
+  margin-bottom: 0;
+  margin-right: 0;
+}

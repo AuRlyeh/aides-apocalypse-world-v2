@@ -1,0 +1,306 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le prophète';
+    var actionstitle = 'Actions du prophète';
+    var createtitle = 'Créer un prophète';
+    var progressionFirst = [
+      'reçois +1cool (max cool+2)',
+      'reçois +1dur (max dur+3)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois une nouvelle action de prophète',
+      'reçois une nouvelle action de prophète',
+      'choisis une nouvelle option pour tes disciples',
+      'choisis une nouvelle option pour tes disciples',
+      'reçois un domaine (détaille-le) et richesse',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Vision, Espoir, Poussière, Vérité, Révélé,
+  | Toujours, Perdu, Désir, Oblige,
+  | Brillant, Tristesse,
+  | Cheval, Lapin, Truite, Chat, Araignée,
+  | Serpent, Chauve-Souris, Lézard,
+  | Chacal, Corbeau, Alouette
+
+block helpgender
+  | homme, femme, ambigu, transgressif, dissimulé
+
+block helpphysique
+  | osseux, dégingandé, doux,
+  | entretenu, gracieux, gras
+
+block helpface
+  | innocent, sale, déterminé,
+  | ouvert, sévère, ascétique
+
+block helpeyes
+  | fascinant, perdu,
+  | magnanime, suspicieux, clair,
+  | brûlant
+
+block helpclothes
+  | Guêtres ravagées, formels,
+  | de récup, déviants,
+  | technologiques
+
+block caracsset
+  ul.dot
+    li
+      | Cool=0, Dur+1, Sexy-1, Rusé+1, Zarb+2
+    li
+      | Cool+1, Dur-1, Sexy+1, Rusé=0, Zarb+2
+    li
+      | Cool-1, Dur+1, Sexy=0, Rusé+1, Zarb+2
+    li
+      | Cool+1, Dur=0, Sexy+1, Rusé-1, Zarb+2
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1 ou toutes les 2 questions suivantes :
+  ul.dot
+    li
+      | Lesquels d’entre vous font partie de mes disciples ?
+      | Pour ces personnages, marques Hx+2.
+    li
+      | Duquel d’entre vous ai-je vu l’âme ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx+1. Tu juges les autres avec rapidité et efficacité.
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | vous retenez chacun 1. Vous
+    | pouvez chacun le dépenser pour
+    | aider l’autre où interférer avec lui, à
+    | distance et malgré tout ce qui vous
+    | sépare.
+
+block actionslist
+  ul
+    li
+      +checkbox('✓')
+      strong Offrande :
+      |
+      | les offrandes, les surplus et les besoins dépendent de tes disciples.
+      | Au début de la session, jette dés+offrande. #[strong Sur 10+], tes disciples ont du surplus.
+      | #[strong Sur 7-9], ils ont du surplus mais tu leur choisis 1-besoin. #[strong Sur 6-], ils sont dans
+      | le besoin. Si leur surplus comprend du troc, comme 1-troc ou 2-troc, c’est ta part.
+    li
+      +checkbox
+      strong Frénésie :
+      |
+      | quand ouvres ton coeur à la foule, jette dés+zarb. #[strong Sur 10+], retiens
+      | 3. #[strong Sur 7-9], retiens 1. Dépense ce que tu as retenu, 1 pour 1, pour que la foule :
+      ul.dot
+        li t’amène une ou plusieurs personne(s) devant tout le monde
+        li t’amène tout son bric-à-brac de valeur
+        li se rassemble et combat pour toi comme un gang (2-dégât 0-armure taille appropriée)
+        li
+          | se laisse aller dans une orgie de passion sans entrave : ça baise, ça se lamente, ça
+          | se frite, ça partage tout, ça fait la fête, comme tu veux
+        li retourne calmement à son train-train
+      | #[strong Sur 6-], la foule se retourne contre toi.
+    li
+      +checkbox
+      strong Charismatique :
+      |
+      | quand tu tentes de manipuler quelqu’un, dés+zarb au lieu de dés+sexy
+    li
+      +checkbox
+      strong Complètement fondu :
+      |
+      | tu reçois +1zarb (zarb+3).
+    li
+      +checkbox
+      strong Voir les âmes à nu :
+      |
+      | quand tu aides quelqu’un ou interfères avec quelqu’un,
+      | dés+zarb au lieu de dés+Hx.
+    li
+      +checkbox
+      strong Protection divine :
+      |
+      | tes dieux te donnent 1-armure. Si tu portes une armure,
+      | utilise-la à sa place, ça ne s’ajoute pas.
+
+
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | tes disciples
+    li
+      | du bric-à-brac valant 4-troc
+    li
+      | des fringues qui collent à ton look (détaille-les)
+
+block uniqueability
+  h3 Disciples
+  p
+    | Par défaut, tu as une vingtaine de disciples, loyaux à ta cause mais pas fanatiques.
+    | Ils vivent leurs vies de leur côté, au sein de la population locale. (offrande+1
+    | surplus : 1-troc besoin : désertion).
+  h6 Décris-les :
+  table
+    tr
+      td
+        +checkbox
+        span ta secte
+      td
+        +checkbox
+        span tes élèves
+      td
+        +checkbox
+        span ton équipe
+    tr
+      td
+        +checkbox
+        span ta famille
+      td
+        +checkbox
+        span ta bande
+      td
+        +checkbox
+        span ta cour
+
+  p
+    | Si tu voyages, décide :
+    ul
+      li
+        +checkbox
+        span s’ils viennent avec toi
+      li
+        +checkbox
+        span ou portent la bonne parole en restant chez eux.
+
+  h6 Choisis 2 avantages :
+  ul
+    li
+      +checkbox
+      span
+        | tes disciples te sont entièrement dévoués ;
+        | surplus : #[strong 1-troc] et remplace besoin : désertion par besoin : #[strong affamé]
+    li
+      +checkbox
+      span
+        | tes disciples ont une activité commerciale lucrative, #[strong +1offrande]
+    li
+      +checkbox
+      span
+        | tes disciples, en groupe, forment une antenne psychique très efficace ;
+        | surplus : #[strong +auspice]
+    li
+      +checkbox
+      span
+        | tes disciples sont pleins de joie et d’entrain, surplus : #[strong +fête]
+    li
+      +checkbox
+      span
+        | tes disciples aiment réfléchir et discuter, surplus : #[strong +conseil]
+    li
+      +checkbox
+      span
+        | tes disciples travaillent dur et ont les pieds sur terre, surplus : #[strong +1troc]
+    li
+      +checkbox
+      span
+        | tes disciples sont motivés, enthousiastes et convaincants ;
+        | surplus: #[strong +croissance]
+
+  h6 Choisis 2 problèmes :
+  ul
+    li
+      +checkbox
+      span
+        | tu as peu de disciples, moins d’une dizaine ; surplus : #[strong -1troc]
+    li
+      +checkbox
+      span
+        | ce ne sont pas vraiment tes disciples, ce sont eux qui t’ont choisi ;
+        | besoin : #[strong jugement] au lieu de besoin : désertion
+    li
+      +checkbox
+      span
+        | tes disciples sont complètement dépendants de toi et ne font rien sans te
+        | demander ton avis, besoin : #[strong +désespoir]
+    li
+      +checkbox
+      span
+        | tes disciples sont des gros camés, surplus : #[strong +toxico]
+    li
+      +checkbox
+      span
+        | tes disciples se foutent de la mode, des commodités et des conventions ;
+        | besoin : #[strong +maladie]
+    li
+      +checkbox
+      span
+        | tes disciples se foutent de la loi, de la paix, du bon sens et de la communauté ;
+        | surplus : #[strong +violence]
+    li
+      +checkbox
+      span
+        | tes disciples sont pervers et décadents, besoin : #[strong +sauvagerie]
+
+  h4 Disciples
+  .columns.grow-1
+    .col.row-container
+      .editbox-xs.grow-1
+        label Description
+    .col.row-container
+      .columns
+        .col
+          .editbox-xs
+            label Surplus
+        .col
+          .editbox-xs
+            label Troc
+      .editbox-xs.grow-1
+        label Besoin
+    .col.row-container
+      .editbox-xs.grow-1
+        label Offrande
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Servir d’augure et de conseiller à un riche PNJ.
+      li Servir d’officiant et de célébrant pour un riche PNJ.
+      li Servir de conseiller, d’officiant et de célébrant pour une population.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

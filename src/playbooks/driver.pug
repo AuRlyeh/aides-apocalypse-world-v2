@@ -1,0 +1,352 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le passeur';
+    var actionstitle = 'Actions du passeur';
+    var createtitle = 'Créer un passeur';
+    var progressionFirst = [
+      'reçois +1cool (max cool+3)',
+      'reçois +1sexy (max sexy+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois une nouvelle action de passeur',
+      'reçois une nouvelle action de passeur',
+      'reçois un nouveau véhicule (détaille-le)',
+      'reçois un garage (atelier, détaille-le) et des assisstants',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Lauren, Audrey, Farley, Sammy,
+  | Katherine, Marilyn, James, Bridget,
+  | Paul, Annette, Marlene, Frankie, Marlon,
+  | Kim, Erol, Humphrey,
+  | Phoenix, Mustang, Mercedes, Katkat,
+  | Escort, Cobra, Spitfire, Corsa, Grand
+  | Cherokee, Jag, Béhème
+
+block helpgender
+  | homme, femme, ambigu, transgressif
+
+block helpphysique
+  | fin, enrobé, trapu, solide,
+  | grand, fort
+
+block helpface
+  | beau, à tomber, sévère,
+  | à l’ossature fine, usé, sale tronche
+
+block helpeyes
+  | calme, dur, triste, froid,
+  | pâle, cernes sous les yeux
+
+block helpclothes
+  | vintage, décontractés,
+  | de travail, en cuir, m’as-tu-vu récupérés
+
+block caracsset
+  ul.dot
+    li
+      | Cool+2, Dur-1, Sexy+1, Rusé+1, Zarb=0
+    li
+      | Cool+2, Dur=0, Sexy+1, Rusé+1, Zarb-1
+    li
+      | Cool+2, Dur+1, Sexy-1, Rusé=0, Zarb+1
+    li
+      | Cool+2, Dur-2, Sexy=0, Rusé+2, Zarb+1
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1, 2 ou toutes les 3 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous m’a sorti d’un sacré pétrin ?
+      | Pour ce personnage, marques Hx+1.
+    li
+      | Lequel d’entre vous a taillé la route avec moi pendant des jours ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous ai-je plusieurs fois surpris à fixer l’horizon ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx-1. Tu n’es pas naturellement enclin à te faire de nombreux amis.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | dés+cool.
+    | Sur 10+, c’était cool. Sur 7-9, ajoute +1 à son Hx avec toi sur sa fiche, mais donne -1 à ton Hx avec lui, sur ta fiche. Sur 6-, tu dois y aller : prends -1 continu jusqu’à ce que tu lui prouves que ce n’était pas du sérieux ou que tu ne cherchais pas à te rapprocher.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong Pilote de combat :
+      |
+      | Quand tu utilises ton véhicule comme d’une arme, inflige +1-dégât. Quand tu infliges des véhicule-dégâts, ajoute +1 au jet de dégât de ta cible. Quand tu subis des véhicule-dégâts, prends -1 à ton jet de dégât.
+    li
+      +checkbox
+      strong Un œil sur la sortie :
+      |
+      | Désigne ton échappatoire et lance dés+cool. #[strong Sur 10+], tu es parti. #[strong Sur 7-9], tu peux partir ou rester, mais si tu pars, tu devras laisser quelque chose ou prendre quelque chose avec toi, le MC te dira quoi. #[strong Sur 6-], tu es pris sur le fait, en train de te casser mais pas encore parti.
+    li
+      +checkbox
+      strong Sentir l’orage :
+      |
+      | quand tu ouvres ton cerveau au maelström psychique,
+      | dés+cool au lieu de dés+zarb.
+    li
+      +checkbox
+      strong Réputation :
+      |
+      | Quand tu rencontres quelqu’un d’important (tu choisis), lance dés+cool. Sur un succès, il a entendu parler de toi, dis ce qu’il a entendu ; le MC le fera répondre selon. #[strong Sur 10+], en plus, tu prends +1 à suivre quand tu auras affaire à lui. #[strong Sur 6-], il a entendu parler de toi mais c’est le MC qui décide de ce qu’il a entendu.
+    li
+      +checkbox
+      strong Casse-cou :
+      |
+      | quand tu fonces droit vers le danger sans assurer tes arrières,
+      | tu reçois +1armure. Si tu mènes un gang ou un convoi, il reçoit +1armure
+      | tout pareil.
+    li
+      +checkbox
+      strong Collectionneur :
+      |
+      | tu reçois 2 bagnoles de plus.
+    li
+      +checkbox
+      strong J’ai laissé mon tank au garage :
+      |
+      | tu reçois un véhicule de combat spécialisé (détailles-le avec le MC).
+
+block startinggear
+  p.help-text
+    | Choisis une arme pratique :
+  ul.help-text
+    li
+      +checkbox
+      span revolver (2-dégâts proche recharge bruyant)
+    li
+      +checkbox
+      span automatique (2-dégâts proche bruyant)
+    li
+      +checkbox
+      span grosse lame (2-dégâts contact)
+    li
+      +checkbox
+      span canon scié (3-dégâts proche recharge salissant)
+    li
+      +checkbox
+      span machette (3-dégâts contact salissant)
+    li
+      +checkbox
+      span magnum (3-dégâts proche recharge bruyant)
+  p.help-text
+    | Tu débutes aussi avec :
+  ul.help-text.dot
+    li
+      | ta bagnole
+    li
+      | du bric-à-brac valant 4-troc
+    li
+      | des fringues qui collent à ton look (détaille-les)
+
+block uniqueability
+  h3 Bagnoles
+
+  - var carTitle = ['Ta bagnole', 'Bagnole 2', 'Bagnole 3', 'Véhicule de combat'];
+  - var carCount = 4;
+  - var idxCar = 0;
+
+  .columns
+    while idxCar < carCount
+      .col
+        h4.grow-1=carTitle[idxCar]
+      - idxCar++;
+  .columns.grow-1
+    - idxCar = 0;
+    while idxCar < carCount
+      .col.row-container
+        .editbox-xs
+          label Châssis
+        .columns
+          .col
+            .editbox-xs
+              label Vitesse
+          .col
+            .editbox-xs
+              label Maniabilité
+        .columns
+          .col
+            .editbox-xs
+              label Armure
+          .col
+            .editbox-xs
+              label Taille
+        .editbox-xs.grow-1
+          label Mots-clés
+      - idxCar++;
+
+  p.help-text Ta bagnole a par défaut vitesse=0, maniabilité=0, 0-armure et sa taille correspondant à son châssis.
+  .columns
+    .col
+      p
+        strong Châssis
+      ul.dot
+        li
+          span moto (taille=0, 1 option de combat)
+        li
+          span petite voiture, buggy (taille=1, 2 options de combat)
+        li
+          span coupé, berline, jeep, pick-up, fourgon, limo, 4x4, tracteur (taille=2, 2 options de combat)
+        li
+          span semi, bus, ambulance, construction/utilitaire (taille=3, 2 options de combat)
+    .col
+      p
+        strong Points forts
+        br
+        | (1 ou 2 au choix) :
+      ul.dot
+        li
+          span rapide
+        li
+          span robuste
+        li
+          span agressive
+        li
+          span compacte
+        li
+          span énorme
+        li
+          span tout-terrain
+        li
+          span nerveuse
+        li
+          span spacieuse
+        li
+          span endurante
+        li
+          span facile d’entretien
+    .col
+      p
+        strong Apparences
+        br
+        | (1 ou 2 au choix) :
+      ul.dot
+        li
+          span élégante
+        li
+          span vintage
+        li
+          span comme neuve
+        li
+          span puissante
+        li
+          span excentrique
+        li
+          span musclée
+        li
+          span flashy
+        li
+          span luxueuse
+        li
+          span mignonne
+        li
+          span artisanale
+        li
+          span gladiateur de la route
+        li
+          span criarde
+    .col
+      p
+        strong Faiblesse
+        br
+        | (1 au choix) :
+      ul.dot
+        li
+          span poussive
+        li
+          span bruyante
+        li
+          span manque de répondant
+        li
+          span perd des pièces
+        li
+          span rigide
+        li
+          span capricieuse
+        li
+          span consommatrice en carburant
+        li
+          span pas fiable
+        li
+          span suspensions trop souples
+    .col
+      p
+        strong Option de combat
+        br
+        | (dépend du châssis) :
+      ul.dot
+        li
+          span vitesse+1
+        li
+          span maniabilité+1
+        li
+          span taille+1
+        li
+          span armure+1
+  p
+    strong Véhicule de combat
+    br
+    | (2 au choix pour ce véhicule) :
+  ul.dot
+    li
+      span +1 option de combat
+    li
+      span mitrailleuses (3-dégât proche/loin zone salissant)
+    li
+      span lance-grenades (4-dégât proche zone salissant)
+    li
+      span pare-choc à pointes (+1-dégât si utilisé comme arme)
+    li
+      span mitrailleuse calibre 50 (5-dégât loin zone salissant)
+    li
+      span plateforme ou harnais d’abordage (+1 pour aborder un véhicule depuis celui-ci)
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Servir de conducteur à un riche PNJ.
+      li Servir de coursier à un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

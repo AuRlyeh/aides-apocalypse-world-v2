@@ -1,0 +1,46 @@
+mixin checkbox(label, uncentered)
+  //- Test 1
+  //- span.check2
+  //-   if label
+  //-     label=label
+  //-   else
+  //-     label &nbsp;
+  //- if block
+  //-   block
+  //- Test 2
+  //- input(type="checkbox")
+  //- if uncentered
+  //-   label.uncentered
+  //-     span.letter #{label}
+  //- else
+  //-   label
+  //-     span.letter #{label}
+  span.checkbox3
+    label
+      strong #{label}
+
+mixin counter
+  <svg xmlns="http://www.w3.org/2000/svg" width="2cm" viewBox="0 0 105.2 116.8"><g transform="translate(-47 -35.3)"><path d="M100 54.1v79.4M60.3 93.8h79.4" fill="none" stroke="#000" stroke-width="1.3"/><circle cx="100" cy="93.8" r="39.5" fill="none" stroke="#000" stroke-width="1.3"/><path d="M100 93.8L80.1 59.6M100 93.8L65.7 74.3" fill="none" stroke="#000" stroke-width="1.3"/><text style="line-height:1.25;-inkscape-font-specification:Garamond" x="88.9" y="49.6" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan x="88.9" y="49.6">12</tspan></text><text y="151.8" x="94.6" style="line-height:1.25;-inkscape-font-specification:Garamond" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan y="151.8" x="94.6">6</tspan></text><text y="100.8" x="142.6" style="line-height:1.25;-inkscape-font-specification:Garamond" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan y="100.8" x="142.6">3</tspan></text><text style="line-height:1.25;-inkscape-font-specification:Garamond" x="45.9" y="100.8" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan x="45.9" y="100.8">9</tspan></text></g></svg>
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    include playbooks\angel.pug
+    include playbooks\battlebabe.pug
+    include playbooks\brainer.pug
+    include playbooks\chopper.pug
+    include playbooks\driver.pug
+    include playbooks\gunlugger.pug
+    include playbooks\hardholder.pug
+    include playbooks\hocus.pug
+    include playbooks\maestrod.pug
+    include playbooks\savvyhead.pug
+    include playbooks\skinner.pug
+    include movessheets\basicmoves.pug
+    include movessheets\peripheralmoves.pug
+    include movessheets\battlemoves.pug
+    include movessheets\roadwarmoves.pug
+    include movessheets\harmrules01.pug
+    include movessheets\harmrules02.pug

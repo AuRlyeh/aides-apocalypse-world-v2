@@ -1,0 +1,288 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le taulier';
+    var actionstitle = 'Actions du taulier';
+    var createtitle = 'Créer un taulier';
+    var progressionFirst = [
+      'reçois +1dur (max dur+3)',
+      'reçois +1cool (max sexy+2)',
+      'reçois +1sexy (max sexy+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois une nouvelle option de domaine',
+      'reçois une nouvelle option de domaine',
+      'efface une option de domaine',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Nbeke, Allison, Kobe, Kreider, Tranh,
+  | Marco, Sadiq, Vega, Lang, Lin,
+  | Jackson
+  | Madame, Barbecue, Mère-grand,
+  | Tonton, Pasteur, Barnum, Colonel,
+  | Mère Supérieure
+
+block helpgender
+  | homme, femme, ambigu, transgressif
+
+block helpphysique
+  | massif, doux, sec, gras,
+  | grand échalas, sensuel
+
+block helpface
+  | fort, sévère, cruel, doux,
+  | aristocratique, à tomber
+
+block helpeyes
+  | froid, autoritaire,
+  | langoureux, affûté, magnanime,
+  | généreux
+
+block helpclothes
+  | de luxe, m’as-tu-vu,
+  | déviants, décontractés,
+  | militaire
+
+block caracsset
+  ul.dot
+    li
+      | Cool-1, Dur+2, Sexy+1, Rusé+1, Zarb=0
+    li
+      | Cool+1, Dur+2, Sexy+1, Rusé+1, Zarb-2
+    li
+      | Cool-2, Dur+2, Sexy=0, Rusé+2, Zarb=0
+    li
+      | Cool=0, Dur+2, Sexy+1, Rusé-1, Zarb+1
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1 ou toutes les 2 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous est avec moi depuis le début ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous m’a trahi ou volé une fois auparavant ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx+1. C’est dans tes intérêts de connaître les affaires de chacun.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | tu peux lui filer un cadeau valant
+    | 1-troc, sans que ça te coûte le
+    | moindre centime.
+
+block actionslist
+  ul
+    li
+      +checkbox('✓')
+      strong Commandement :
+      |
+      | Quand tu ordonnes à ton gang d’avancer,
+      | de se regrouper,
+      | de tenir une position,
+      | de maintenir l’ordre et la discipline,
+      | ou de donner tous ce qu’ils ont, lances dés+dur.
+      | #[strong Sur 10+], ils le font immédiatement, reçois +1 à suivre.
+      | #[strong Sur 7-9], ils le font immédiatement.
+      | #[strong Sur 6-], ils le font mais ça te posera des problèmes par la suite.
+    li
+      +checkbox('✓')
+      strong Richesse :
+      |
+      | si ton domaine est en sécurité et que tu l’as bien en main, au
+      | début de la session jette dés+dur. #[strong Sur 10+], tu gagnes ton surplus que tu peux
+      | dépenser pour les besoins de la session. #[strong Sur 7-9], tu as ton surplus mais tu choisis
+      | 1 besoin. #[strong Sur 6-], ou si ton domaine est compromis ou ta mainmise
+      | vacillante, ton domaine est dans le besoin. La nature exacte de ton surplus et
+      | de tes besoins dépend de ton domaine, voir au verso.
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | ton domaine
+    li
+      | des fringues qui collent à ton look (détaille-le)
+    li
+      | Si tu le souhaites, tu peux avoir, pour ton usage
+      | personnel et avec aval du MC, quelques
+      | armes ou matos non-spécialisés
+      | venant d’un autre livret de
+      | personnage.
+
+block uniqueability
+  .row-container
+    h3 Domaine
+    p Par défaut, ton domaine a :
+    ul.dot
+      li
+        | 75-150 âmes
+      li
+        | pour les jobs, un mélange de chasse, de culture rudimentaire et de récup
+        | (surplus: 1-troc, besoin : affamé)
+      li
+        | une enceinte faite de béton, de métal et d’armature de fortune. Ton gang
+        | chope +1armure quand il défend l’enceinte.
+      li
+        | un arsenal de fortune, entre la récup et le fait-maison.
+      li
+        | un garage avec 4 véhicules utilitaire et 4 véhicules de combat (détailles-les avec le MC)
+      li
+        | un gang d’une quarantaine de brutes (2-dégâts gang moyen indiscipliné 1-armure)
+    p Choisis 4 avantages :
+    ul
+      li
+        +checkbox
+        span tes sujets sont nombreux, 200-300 âmes ; surplus : #[strong +1troc], besoin : #[strong +maladie]
+      li
+        +checkbox
+        span
+          | tes sujets sont peu nombreux, 50-60 âmes ;
+          | besoin : #[strong anxieux] au lieu de besoin : affamé
+      li
+        +checkbox
+        span pour les jobs, ajoute du pillage très lucratif ; surplus : #[strong +1troc], besoin : #[strong +représailles]
+      li
+        +checkbox
+        span pour les jobs, ajoute une taxe de protection ; surplus : #[strong +1troc], besoin : #[strong +obligation]
+      li
+        +checkbox
+        span pour les jobs, ajoute une usine ; surplus : #[strong +1troc], besoin : #[strong +oisif]
+      li
+        +checkbox
+        span
+          | pour les jobs, ajoute un énorme marché connu à cents lieues ;
+          | surplus : #[strong +1troc], besoin : #[strong +étrangers]
+      li
+        +checkbox
+        span
+          | ton gang est #[strong gros] au lieu de moyen, 60 brutes environ
+      li
+        +checkbox
+        span
+          | ton gang est discipliné, #[strong efface indiscipliné]
+      li
+        +checkbox
+        span
+          | ton arsenal est fourni et sophistiqué, ton gang chope #[strong +1dégât]
+      li
+        +checkbox
+        span
+          | Ton garage contient #[strong 7 véhicules de combat] et quelques véhicules utilitaires supplémentaires si tu le souhaites.
+      li
+        +checkbox
+        span
+          | ton enceinte est grande, profonde et imposante, faite de pierre et d’acier ;
+          | ton gang chope #[strong +2armure] quand il défend l’enceinte
+
+    p Choisis 2 problèmes :
+    ul
+      li
+        +checkbox
+        span
+          | tes sujets sont crasseux et malades, besoin : #[strong +maladie]
+      li
+        +checkbox
+        span
+          | tes sujets sont fainéants et camés, besoin : #[strong +famine]
+      li
+        +checkbox
+        span
+          | tes sujets sont décadents et pervers, surplus : #[strong -1troc], besoin : #[strong +sauvagerie]
+      li
+        +checkbox
+        span
+          | ton domaine paie un impôt à un protecteur,
+          | surplus : #[strong -1troc], besoin : #[strong +représailles]
+      li
+        +checkbox
+        span
+          | ton gang est #[strong petit] au lieu de moyen, juste 10-20 brutes
+      li
+        +checkbox
+        span
+          | ton gang est une bande de sales hyènes, #[strong +sauvage]
+      li
+        +checkbox
+        span
+          | ton arsenal c’est de la daube, ton gang chope #[strong -1dégât]
+      li
+        +checkbox
+        span
+          | ton garage c’est de la daube, il ne contient que #[strong 2 véhicules utilitaires] et #[strong 2 véhicules de combat]
+      li
+        +checkbox
+        span
+          | ton enceinte c’est des tentes, un bidonville et des planches de bois ;
+          | ton gang n’a #[strong aucune armure en plus] quand il défend l’enceinte
+
+    .columns.grow-1
+      .col.row-container
+        h4 Gang
+        .columns.grow-1
+          .col
+            .editbox-xs
+              label Taille
+            .editbox-xs
+              label Dégâts
+            .editbox-xs
+              label Armure
+            p.help-text ± 1dégât / différence de taille vs. des gangs plus petits/gros
+          .col.row-container
+            .editbox-xs.grow-1
+              label Mots-clés
+      .col.row-container
+        h4 Domaine
+        .columns.grow-1
+          .col.row-container
+            .editbox-xs.grow-1
+              label Taille
+            .editbox-xs.grow-2
+              label Jobs
+          .col.row-container
+            .editbox-xs.grow-1
+              label Surplus
+            .editbox-xs.grow-2
+              label Besoins
+
+block barter
+  p
+    | Ton domaine pourvoit à tes besoins quotidiens, donc tant que tu as la main
+    | mise dessus tu n’as pas besoin de faire des dépenses pour maintenir ton style de vie au début d’une session.
+  p
+    | Quand tu files des cadeaux, voilà ce qui peut compter pour un cadeau valant
+    | 1-troc :
+    br
+    em
+      | l’hospitalité pour un mois, avec un endroit où vivre et des repas à la cantine ;
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une semaine de protection rapprochée par une beauté fatale, un chien de guerre ou autre membre de gang à ton service ;
+      | la réparation d’un matos hightech par ton machiniste favori ;
+      | un mois d’entretien pièces et main-d’oeuvre pour un véhicule haute performance et qui sert souvent ;
+      | une demi-heure de ton attention la plus complète, en audience privée ;
+      | et bien sûr, du bric-à-brac valant 1-troc.
+  p
+    | Dans les périodes d’abondance, le surplus de ton domaine est tout à toi et
+    | tu le dépenses comme tu le sens (pars du principe que la vie de tes citoyens
+    | est plus aisée aussi, toutes proportions gardées.) Tu peux estimer ce qui vaut
+    | 1-troc, avec la liste ci-dessus. Pour de la meilleure came, prépare-toi à faire
+    | des arrangements, très certainement en passant un traité avec un seigneur
+    | de guerre voisin.

@@ -1,0 +1,161 @@
+mixin checkbox(label, uncentered)
+  span.checkbox3
+    label
+      strong #{label}
+
+mixin counter
+  <svg xmlns="http://www.w3.org/2000/svg" width="2cm" viewBox="0 0 105.2 116.8"><g transform="translate(-47 -35.3)"><path d="M100 54.1v79.4M60.3 93.8h79.4" fill="none" stroke="#000" stroke-width="1.3"/><circle cx="100" cy="93.8" r="39.5" fill="none" stroke="#000" stroke-width="1.3"/><path d="M100 93.8L80.1 59.6M100 93.8L65.7 74.3" fill="none" stroke="#000" stroke-width="1.3"/><text style="line-height:1.25;-inkscape-font-specification:Garamond" x="88.9" y="49.6" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan x="88.9" y="49.6">12</tspan></text><text y="151.8" x="94.6" style="line-height:1.25;-inkscape-font-specification:Garamond" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan y="151.8" x="94.6">6</tspan></text><text y="100.8" x="142.6" style="line-height:1.25;-inkscape-font-specification:Garamond" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan y="100.8" x="142.6">3</tspan></text><text style="line-height:1.25;-inkscape-font-specification:Garamond" x="45.9" y="100.8" font-weight="400" font-size="22.6" font-family="Garamond" letter-spacing="0" word-spacing="0" stroke-width=".3"><tspan x="45.9" y="100.8">9</tspan></text></g></svg>
+
+block jsdefinitions
+
+.printer-margin-box.columns
+  .col.columns
+    .col.row-container
+      h3 Nom :
+      p.help-text
+        em
+          block helpname
+      h3 Look
+      p
+        strong Genre :
+      p.help-text
+        em
+          block helpgender
+      p
+        strong Physique :
+      p.help-text
+        em
+          block helpphysique
+      p
+        strong Visage :
+      p.help-text
+        em
+          block helpface
+      p
+        strong Regard : 
+      p.help-text
+        em
+          block helpeyes
+      p
+        strong Vêtements :
+      p.help-text
+        em
+          block helpclothes
+
+      h3 Caracs
+
+      include caracs.pug
+
+      h3 Dégâts
+      .columns
+        .col.row-container
+          p compteur
+          +counter
+          p
+            +checkbox
+            span stabilisé
+        .col
+          p Quand la vie devient insoutenable :
+          ul
+            li
+              +checkbox
+              span reviens avec -1dur
+            li
+              +checkbox
+              span reviens avec +1zarb (max+3)
+            li
+              +checkbox
+              span crée un nouveau personnage
+            li
+              +checkbox
+              span meurs
+    .col.row-container
+      .columns.justify-center
+        h1.align-center=title
+      h3 Hx
+      .box.grow-1
+        p.help-text
+          | aider ou interférer;
+          br
+          | fin de session
+      h3 Spécial
+
+      block special
+
+      h3 Progression
+
+      p
+        strong expérience
+        +checkbox
+        +checkbox
+        +checkbox
+        +checkbox
+        +checkbox('>')
+        strong >> choisis :
+      ul
+        each val in progressionFirst
+          li
+            +checkbox
+            span= val
+      p Options débloquées après 5 progressions :
+      ul
+        each val in progressionSecond
+          li
+            +checkbox
+            span= val
+  .col.row-container
+    .columns
+      .col.row-container
+        h3=actionstitle
+        p.help-text
+          | Choisis deux actions :
+        block actionslist
+    .columns.grow-1
+      .col.row-container
+        h3 Autres actions
+        .box.grow-1
+    .columns
+      .col.row-container
+        h3 Matos et troc
+    .columns.grow-2
+      .col.row-container
+        p.help-text
+          strong Équipement de départ
+        block startinggear
+
+      .col.row-container.grow-2
+        .box.grow-1
+
+.printer-margin-box.columns
+    .col.row-container
+      block uniqueability
+
+    .col.row-container
+      h3=createtitle
+      .columns
+        .col.row-container
+          h4 1. Choisis ton nom
+          h4 2. Choisis ton look
+          h4 3. Choisis tes caracs
+          p Choisis un profil :
+          block caracsset
+          h4 4. Choisis tes actions
+          h4 5. Choisis ton matos
+          h4 6. Choisis tes Hx
+          p
+            | Faites un tour de table pour présenter votre personnage par son nom, son look et son matos. Lors de l’introduction des autres personnages joueur, écris leur nom.
+          block hxquestions
+          h3 Progression
+          p Tu coches une bulle d’expérience quand :
+          ul.dot
+            li
+              | Tu lances une carac cochée
+            li
+              | Tu gagnes un Hx avec quelqu’un alors que son Hx sur ta feuille est à +3. Son Hx repasse à +1.
+            li
+              | Tu perds un Hx avec quelqu’un alors que son Hx sur ta feuille est à -3. Son Hx repasse à -1.
+          p Lorsque la 5ᵉ bulle est cochée, efface-les toutes et coche une option de progression.
+
+          h3 Marchandage
+
+          block barter

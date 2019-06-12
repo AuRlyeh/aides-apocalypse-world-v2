@@ -1,0 +1,343 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le biker';
+    var actionstitle = 'Actions du biker';
+    var createtitle = 'Créer un biker';
+    var progressionFirst = [
+      'reçois +1dur (max dur+3)',
+      'reçois +1cool (max cool+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois +1zarb (max zarb+2)',
+      'choisis une nouvelle option pour ton gang',
+      'choisis une nouvelle option pour ton gang',
+      'reçois un domaine (détaille-le) et richesse',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Clébard, Domino, Côtelette, Puant, Satan, Lars, Bastos, Dés, Tête de Con, Pinte, Flingueur, Diamant, Goldie, Bidouilleur, Lavette, Frangin, Juck, Marteau, Gnôle, Double Un, Petit Orteil, Câble, Blues
+
+block helpgender
+  | homme, femme, ambigu, transgressif
+
+block helpphysique
+  | trapu, élancé, noueux, robuste, gras
+
+block helpface
+  | buriné, solide, étroit, sévère, gueule cassée
+
+block helpeyes
+  | yeux rapprochés, yeux brûlés, calculateur, fatigué, aimable
+
+block helpclothes
+  | combi de combat, combi m’as-tu vu, combi pouilleuse, combi cuir-SM
+
+block caracsset
+  ul.dot
+    li
+      | Cool+1, Dur+2, Sexy-1, Rusé+1, Zarb=0
+    li
+      | Cool+1, Dur+2, Sexy+1, Rusé=0, Zarb-1
+    li
+      | Cool+1, Dur+2, Sexy=0, Rusé+1, Zarb-1
+    li
+      | Cool+2, Dur+2, Sexy-1, Rusé=0, Zarb-1
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1, 2 ou toutes les 3 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous a fait partie de mon gang ?
+      | Pour ce personnage, marques Hx+1.
+    li
+      | Lequel d’entre vous s’imagine qu’il peut me tenir tête en combat, si on en arrive là ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous nous a déjà tenu tête, à moi et mon gang ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx-1. Tu t’en fous un peu, des autres.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | il change de suite sa feuille
+    | pour avoir Hx+3 avec toi. Il choisit
+    | aussi si tu prends -1 ou +1 à ton Hx
+    | avec lui, sur ta feuille.
+
+block actionslist
+  ul
+    li
+      +checkbox('✓')
+      strong Mâle alpha :
+      |
+      | quand tu essaies de forcer ton gang à faire ce que tu veux,
+      | dés+dur. #[strong Sur 10+], tous les 3. #[strong Sur 7-9], 1 au choix :
+      ul.dot
+        li ils font ce que tu veux (dans le cas contraire, ils refusent)
+        li ça ne déclenche pas une bagarre (dans le cas contraire, une bagarre se déclenche)
+        li tu n’as pas à faire un exemple de l’un d’entre eux (dans le cas contraire, tu dois faire un exemple)
+      | #[strong Sur 6-], un de tes gars essaie de prouver qu’il a plus d’autorité que toi
+      | sur le reste du gang.
+    li
+      +checkbox('✓')
+      strong Put*** de voleurs :
+      |
+      | quand tu demandes à ton gang de fouiller ses poches et
+      | ses sacs pour un truc, dés+dur. Ça doit être assez petit pour tenir dans une sacoche de moto.
+      | #[strong Sur 10+], un de tes mecs a justement ça dans sa poche, ou en tout cas un truc
+      | qui peut servir. #[strong Sur 7-9], un de tes mecs a un truc qui peut servir, sauf si c’est
+      | high-tech et dans ce cas tu peux te brosser. #[strong Sur 6-], un de tes mecs en
+      | avait un, il en est sûr, mais visiblement un trou du cul a dû le piquer.
+
+block startinggear
+  p.help-text
+    | Choisis deux vrais armes :
+  ul.help-text
+    li
+      +checkbox
+      span magnum (3-dégâts proche recharge bruyant)
+    li
+      +checkbox
+      span pistolet mitrailleur (2-dégâts proche automatique bruyant)
+    li
+      +checkbox
+      span canon scié (3-dégâts proche recharge salissant)
+    li
+      +checkbox
+      span barre à mine (2-dégâts contact salissant)
+    li
+      +checkbox
+      span machette (3-dégâts contact salissant)
+    li
+      +checkbox
+      span arbalète (2-dégâts proche lent)
+    li
+      +checkbox
+      span arbalète de poignet (1-dégât proche lent)
+  p.help-text
+    | Tu débutes aussi avec :
+  ul.help-text.dot
+    li
+      | ta bécane et ton gang
+    li
+      | du bric-à-brac valant 2-troc
+    li
+      | des fringues qui collent à ton look qui te donnent 1-armure ou 2-armures (détaille-les)
+
+block uniqueability
+  h3 Ta bécane
+  p.help-text Ta bécane a par défaut vitesse=0, maniabilité=0, 0-armure et taille=0.
+  .columns
+    .col
+      p
+        | Points forts
+        br
+        | (1 ou 2 au choix) :
+      ul.dot
+        li
+          span rapide
+        li
+          span robuste
+        li
+          span agressive
+        li
+          span compacte
+        li
+          span énorme
+        li
+          span nerveuse
+    .col
+      p
+        | Apparences
+        br
+        | (1 ou 2 au choix) :
+      ul.dot
+        li
+          span profilée
+        li
+          span vintage
+        li
+          span tunée à mort
+        li
+          span rugissante
+        li
+          span imposante
+        li
+          span musclée
+        li
+          span flashy
+        li
+          span luxueuse
+    .col
+      p
+        | Faiblesse
+        br
+        | (1 au choix) :
+      ul.dot
+        li
+          span lente
+        li
+          span branlante
+        li
+          span consommatrice en carburant
+        li
+          span trop légère
+        li
+          span perd des pièces
+        li
+          span manque de répondant
+        li
+          span pas fiable
+    .col
+      p
+        | Option de combat
+        br
+        | (1 au choix) :
+      ul.dot
+        li
+          span vitesse+1
+        li
+          span maniabilité+1
+    .col.grow-2.row-container
+      .columns
+        .col
+          .editbox-xs
+            label Vitesse
+        .col
+          .editbox-xs
+            label Maniabilité
+      .columns
+        .col
+          .editbox-xs
+            label Armure
+        .col
+          .editbox-xs
+            label Taille
+      .editbox-xs.grow-1
+        label Mots-clés
+
+  h3 Gang
+
+  .columns
+    .col.grow-4
+      p 
+        | Par défaut, ton gang compte à peu près
+        | 15 bâtards enragés, avec des armes et des
+        | armures de récupération et sans aucune
+        | discipline (2-dégâts gang petit sauvage
+        | 1-armure).
+      p Choisis 2 avantages au choix :
+      ul
+        li
+          +checkbox
+          span
+            | ton gang rassemble une trentaine de
+            | bâtards enragés : #[strong moyen] au lieu de petit
+        li
+          +checkbox
+          span ton gang est bien armé : #[strong +1dégât]
+        li
+          +checkbox
+          span ton gang sort couvert : #[strong +1armure]
+        li
+          +checkbox
+          span ton gang est discipliné : #[strong efface sauvage]
+        li
+          +checkbox
+          span
+            | ton gang aime la liberté et peut
+            | rafistoler et entretenir ses bécanes sans
+            | avoir une base fixe : #[strong +mobile]
+        li
+          +checkbox
+          span
+            | ton gang se débrouille tout seul et fait
+            | ses courses en pillant et en recyclant :
+            | #[strong +riche]
+      p Choisis 1 problème au choix :
+      ul
+        li
+          +checkbox
+          span
+            | les bécanes de ton gang sont en sale
+            | état et on doit les rafistoler sans arrêt,
+            | vulnérable : #[strong panne]
+        li
+          +checkbox
+          span
+            | les bécanes de ton gang sont classes
+            | mais faut y faire attention, vulnérable :
+            | #[strong capricieux]
+        li
+          +checkbox
+          span
+            | ton gang est instable, les membres
+            | vont et viennent comme ils le sentent ;
+            | vulnérable : #[strong désertion]
+        li
+          +checkbox
+          span
+            | ton gang a une grosse dette envers
+            | quelqu’un de puissant, vulnérable :
+            | #[strong obligation]
+        li
+          +checkbox
+          span
+            | ton gang est crade et négligé,
+            | vulnérable : #[strong maladie]
+    .col.row-container
+      .editbox-xs
+        label Taille
+      .editbox-xs
+        label Dégâts
+      .editbox-xs
+        label Armure
+      p.help-text ± 1dégât / différence de taille vs. des gangs plus petits/gros
+      .editbox-xs.grow-1
+        label Mots-clés
+
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Extorquer, braquer ou voler une riche population. 
+      li Commettre un meurtre commandité par un riche PNJ.
+      li Servir de garde du corps à un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

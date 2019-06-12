@@ -1,0 +1,257 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le maestro D\'';
+    var actionstitle = 'Actions du maestro D\'';
+    var createtitle = 'Créer un maestro D\'';
+    var progressionFirst = [
+      'reçois +1sexy (max cool+3)',
+      'reçois +1cool (max cool+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois une nouvelle action de maestro D\'',
+      'reçois une nouvelle action de maestro D\'',
+      'reçois un nouveau système de sécurité pour ton établissement',
+      'Résout l’intérêt de quelqu’un pour ton établissement',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Cookie, Argent, Enfumé, Mixture, Directeur, Rose, Anika, LL. B. (docteur en droit), Président, Sérieux, Safran, Vie, Yen, Emmy, Julia, Choucarle, François, Escobar, Pensionnarieur, Marie, Mamie, Décide, Raison, Chute
+
+block helpgender
+  | homme, femme, ambigu, transgressif
+
+block helpphysique
+  | gras, agité, courtaud, pulpeux, inhabituel, fin
+
+block helpface
+  | blême, enfantin, mignon, expressif, rassasié, tatoué, en porcelaine, balafré
+
+block helpeyes
+  | froid, brillant, interrogateur, franc, espiègle, borgne
+
+block helpclothes
+  | décontractés, m’as-tu vu, vintage, de boucher, de fétichiste, d’un blanc immaculé
+
+block caracsset
+  ul.dot
+    li
+      | Cool+1, Dur-1, Sexy+2, Rusé=0, Zarb+1
+    li
+      | Cool=0, Dur+1, Sexy+2, Rusé+1, Zarb-1
+    li
+      | Cool-1, Dur+2, Sexy+2, Rusé=0, Zarb-1
+    li
+      | Cool=0, Dur=0, Sexy+2, Rusé+1, Zarb=0
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1 ou toutes les 2 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous est, d’après moi, le plus attirant ?
+      | Pour ce personnage, marque Hx+2.
+    li
+      | Lequel d’entre vous est mon préféré ?
+      | Pour ce personnage, marque Hx+3.
+  p.no-margin
+    | Pour tous les autres, marque Hx+1. C’est ton métier d’apprendre à connaître les gens.
+
+block special
+  p
+    | Tu n’as pas besoin d’être seul avec quelqu’un pour que ça compte comme avoir un moment d’intimité avec quelqu’un.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong C’est moi ou il fait chaud ? :
+      |
+      | quand tu agis face au danger, lance dés+sexy à la place de dés+cool.
+    li
+      +checkbox
+      strong Le diable est dans la lame :
+      |
+      | quand tu utilises une lame pour agresser quelqu’un, lance dés+sexy au lieu de dés+dur.
+    li
+      +checkbox
+      strong Se servir dans toutes les assiettes :
+      |
+      | désigne quelque chose que tu veux, ça peut être une personne, un objet, un service, et lance dés+sexy.
+      | #[strong Sur 10+], il se trouve dans ton établissement comme par magie.
+      | #[strong Sur 7-9], tes gens cherchent à te faire plaisir en t’offrant quelque chose d’approchant.
+      | #[strong Sur 6-], il se trouve dans ton établissement mais l’obtenir sera difficile.
+    li
+      +checkbox
+      strong Tout le monde doit manger :
+      |
+      | quand tu veux savoir quelque chose sur quelqu’un d’important (d’après toi), lance dés+sexy.
+      | #[strong Sur 10+], poses 3 questions.
+      | #[strong Sur 7-9], poses 1 question.
+      ul.dot
+        li Comment va-t-il ? Que fait-il ?
+        li Qui connaît-il, aime-t-il et/ou à qui fait-il confiance ?
+        li Comment puis-je l’atteindre physiquement ou émotionnellement ?
+        li Qu’est-ce qui ou qui aime-t-il le plus ?
+        li Où ai-je le plus de chance de le rencontrer ?
+      | #[strong Sur 6-], poses 1 question, mais il sait que tu t’intéresses à lui désormais.
+    li
+      +checkbox
+      strong Vous n’avez aucun mobile :
+      |
+      | désigne quelqu’un qui pourrait boire, manger ou ingérer quelque chose que tu as touché.
+      | Si c’est un PNJ, lance dés+dur. Si c’est un PJ, lance dés+Hx.
+      | #[strong Sur 10+], il l’ingère et subit 4-dégâts (perforant) dans les prochaines 24 heures.
+      | #[strong Sur 7-9], il subit 2-dégâts (perforant).
+      | #[strong Sur 6-], plusieurs personnes, au choix du MC, l’ingère et tous subissent 3-dégâts (perforant).
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | ton établissement
+    li
+      | une vilaine lame, tel qu’un couteau de boucher ou de long ciseaux aiguisés (2-dégâts contact).
+    li
+      | du bric-à-brac valant 2-troc
+    li
+      | des fringues qui collent à ton look, y compris un accessoire valant 1-armure si tu le souhaites (détaille-le)
+
+block uniqueability
+  h3 Établissement
+  p
+    | Ton établissement a une attraction principale supportée par 2 attractions secondaires (comme un bar fourni des boissons auxquelles s’ajoutent de la musique et de la nourriture simple).
+    | Choisis 1 attraction principale et 2 attractions secondaires :
+  table
+    tr
+      td
+        +checkbox
+        span nourriture de luxe
+      td
+        +checkbox
+        span musique
+      td
+        +checkbox
+        span mode
+      td
+        +checkbox
+        span beaucoup de bouffe
+      td
+        +checkbox
+        span sexe
+    tr
+      td
+        +checkbox
+        span spectacle
+      td
+        +checkbox
+        span nourriture simple
+      td
+        +checkbox
+        span jeux
+      td
+        +checkbox
+        span art
+      td
+        +checkbox
+        span boissons
+    tr
+      td
+        +checkbox
+        span café
+      td
+        +checkbox
+        span drogues
+      td
+        +checkbox
+        span sports
+      td
+        +checkbox
+        span théâtre (voir et jouer une pièce)
+      td
+
+  p
+    | #[strong Pour l’atmosphère de ton établissement], choisis 3 ou 4 :
+    em
+      | agité, intimiste, enfumé, plongé dans la pénombre, parfumé, gluant, de velours, fantasmatique, cuivré, avec des lumières, acoustique, anonyme, carnivore, espion, sanglant, complotiste, violent, nostalgique, pimenté, silencieux, luxueux, dénudé, d’une certaine retenue, d’oubli, douloureux, bizarre, sucré, à l’abri, crasseux, bruyant, dansant, relaxant, masqué, avec des fruits frais, en cage.
+
+  p
+    | #[strong Tes clients réguliers] incluent ces 5 PNJ : Lamproie, Ba, Camo, Toyota et Yvres.
+  p Qui est ton meilleur client régulier ?
+  p Qui est ton pire client régulier ?
+
+  p
+    | Ces 3 PNJ (au moins) sont #[strong intéressés par ton établissement] : Been, Rolfball, Glams.
+  p Qui veut en faire partie ?
+  p À qui dois-tu ton établissement ?
+  p Qui veut le voir disparaître ?
+
+  strong Pour la sécurité, choisis :
+
+  p
+    +checkbox
+    span un gang (3-dégâts gang petit 1-armure)
+
+  strong Ou choisis 2 :
+
+  ul
+    li
+      +checkbox
+      span un fusil à pompe (3-dégâts proche recharge salissant)
+    li
+      +checkbox
+      span un videur qui connaît son affaire (2-dégâts 1-armure)
+    li
+      +checkbox
+      span du contreplaqué et du grillage (1-armure)
+    li
+      +checkbox
+      span des secrets, mots de passe, codes, signaux, entrées sur invitation uniquement, tickets d’entrée, etc.
+    li
+      +checkbox
+      span tout le monde est armé : ton équipe est un gang (2-dégâts gang petit 0-armure)
+    li
+      +checkbox
+      span un dédale de cul-de-sacs, retraites, cachettes et refuges
+    li
+      +checkbox
+      span un lieu mobile, toujours un nouveau lieu
+
+  .editbox-xs.grow-1
+    label Ton équipe
+  
+  p.help-text
+    | Ton équipe peut être composée entièrement de PJ, avec leur accord, ou entièrement de PNJ, ou un mélange entre les deux. S’il y a des PNJ, esquisse-les, avec un nom et une description d’une ligne, avec le MC. Fais en sorte qu’ils correspondent à ton établissement.
+
+block barter
+  p
+    | Ton établissement pourvoit à tes besoins quotidiens, donc tant que celui-ci
+    | est ouvert tu n’as pas besoin de faire des dépenses pour maintenir ton style de vie au début d’une session.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

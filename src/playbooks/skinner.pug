@@ -1,0 +1,258 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'L’envoûteur';
+    var actionstitle = 'Actions de l’envoûteur';
+    var createtitle = 'Créer un envoûteur';
+    var progressionFirst = [
+      'reçois +1cool (max cool+2)',
+      'reçois +1cool (max cool+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois une nouvelle action d’envoûteur',
+      'reçois une nouvelle action d’envoûteur',
+      'reçois un établissement (détaille-le)',
+      'reçois des disciples (détaille-les) et Offrande',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Octobre, Venus, Mercure, Dune, Pénombre,
+  | Héron, Mirabelle, Orchidée,
+  | Tempête, Crépuscule, Lame, Minuit,
+  | Parure, Gel, Pelouse, Juin, Verglas,
+  | Terne, Lavande, Épice, Gazelle, Lion,
+  | Paon, Grâce
+
+block helpgender
+  | homme, femme, ambigu, transgressif, androgyne
+
+block helpphysique
+  | fin, tonique, gras, contre nature,
+  | jeune, sensuel
+
+block helpface
+  | frappant, doux, étrange,
+  | joli, superbe
+
+block helpeyes
+  | rieur, moqueur, ténébreux,
+  | sombre, troublé, paralysant,
+  | brillant, glacial
+
+block helpclothes
+  | provocants, m’as-tu-vu
+  | et de récup, de luxe, déviants,
+  | confortables
+
+block caracsset
+  ul.dot
+    li
+      | Cool+1, Dur-1, Sexy+2, Rusé+1, Zarb=0
+    li
+      | Cool=0, Dur=0, Sexy+2, Rusé=0, Zarb+1
+    li
+      | Cool-1, Dur=0, Sexy+2, Rusé+2, Zarb-1
+    li
+      | Cool+1, Dur+1, Sexy+2, Rusé+1, Zarb-2
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1, 2 ou toutes les 3 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous est mon ami ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous est mon amant ?
+      | Pour ce personnage, marques Hx+1.
+    li
+      | Lequel d’entre vous est amoureux de moi ?
+      | Pour ce personnage, marques Hx-1.
+  p.no-margin
+    | Pour tous les autres, marques Hx+1 ou Hx-1, comme tu le souhaites.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | 1 au choix :
+    ul.dot
+      li
+        | Tu prends +1 pour ton prochain jet
+        | et lui aussi
+      li
+        | Tu prends +1 pour ton prochain
+        | jet, il prend -1
+      li
+        | Il doit te faire un cadeau
+        | valant au moins 1-troc
+      li
+        | Tu peux l’#[strong hypnotiser] comme si tu
+        | avais tiré un 10+, même si tu n’as
+        | pas pris cette action-là
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong A couper le souffle :
+      |
+      | tu reçois +1sexy (sexy+3).
+    li
+      +checkbox
+      strong Perdu :
+      |
+      | quand tu murmures le nom de quelqu’un dans le maelström psychique,
+      | dés+zarb. Sur une réussite, il vient à toi, avec une explication crédible
+      | ou pas. #[strong Sur 10+], tu reçois +1 à ton prochain jet contre lui. #[strong Sur 6-], le MC
+      | te pose 3 questions, réponds-y honnêtement.
+    li
+      +checkbox
+      strong De l’art et de la grâce :
+      |
+      | quand tu pratiques ton art de prédilection — n’importe
+      | quelle activité culturelle ou forme d’expression — ou quand tu présentes
+      | tes oeuvres au public, dés+sexy. #[strong Sur 10+], dépense 3. #[strong Sur 7-9], dépense 1. Tu
+      | dépenses pour désigner un PNJ dans ton public et :
+      ul.dot
+        li il doit venir te rencontrer
+        li il doit faire appel à tes services
+        li il tombe amoureux de toi
+        li il doit te faire un cadeau
+        li il admire ton mécène
+      | #[strong Sur 6-], tu ne gagnes rien mais tu ne perds rien non plus et tu ne risques
+      | rien. Tu as juste fait de l’excellent boulot.
+    li
+      +checkbox
+      strong Faire tourner les têtes :
+      | 
+      | quand tu enlèves un vêtement ou que tu le fais à
+      | quelqu’un d’autre, toutes les personnes qui regardent la scène sont incapables
+      | de faire autre chose que regarder. Tu as leur attention complète. Si tu veux, tu
+      | peux désigner quelqu’un qui n’est pas paralysé.
+    li
+      +checkbox
+      strong Hypnotique :
+      |
+      | quand tu t’isoles un temps avec quelqu’un, il fait une fixation
+      | sur toi. Dés+sexy. #[strong Sur 10+], retiens 3. #[strong Sur 7-9], retiens 1. Ta cible peut dépenser
+      | ce que tu retiens, 1 pour 1, et :
+      ul.dot
+        li il te donne quelque chose que tu veux
+        li il devient tes yeux et tes oreilles
+        li il se bat pour te protéger
+        li il fait quelque chose que tu lui as demandé
+      | Avec les PNJ, tant que tu retiens quelque chose contre eux ils ne peuvent pas
+      | agir contre toi. Avec un PJ, tu peux dépenser ce que tu retiens, 1 pour 1, pour
+      | qu’il soit:
+      ul.dot
+        li distrait en pensant à toi : il agit face au danger
+        li inspiré en pensant à toi : il chope +1 tout de suite
+      | #[strong Sur 6-], la cible retient 2 contre toi, selon les mêmes conditions.
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | 1 arme stylée
+    li
+      | 2 matos de luxe
+    li
+      | du bric-à-brac valant 2-troc
+    li
+      | des fringues qui collent à ton look (détaille-le)
+
+block uniqueability
+  h3 Matos de l’envoûteur
+  h4 Armes stylées (1 au choix) :
+  ul
+    li
+      +checkbox
+      span flingue dans la manche (2-dégâts proche recharge bruyant)
+    li
+      +checkbox
+      span dague ouvragée (2-dégâts contact précieux)
+    li
+      +checkbox
+      span couteaux dissimulés (2-dégâts contact infini)
+    li
+      +checkbox
+      span épée décorée (3-dégâts contact précieux)
+    li
+      +checkbox
+      span pistolet ancien (2-dégâts proche recharge bruyant précieux)
+
+  h4 Matos de luxe (2 au choix) :
+  ul
+    li
+      +checkbox
+      span monnaie ancienne (porté précieux)
+      br
+      em avec un trou pour la porter comme bijou
+    li
+      +checkbox
+      span lunettes (porté précieux)
+      br
+      em
+        | tu peux les mettre pour avoir +1rusé quand ta vue compte, mais si tu le fais,
+        | sans elles tu reçois -1rusé quand ta vue compte
+    li
+      +checkbox
+      span long manteau à tomber (porté précieux)
+    li
+      +checkbox
+      span tatouages spectaculaires (implanté)
+    li
+      +checkbox
+      span produits de beauté (appliqué précieux)
+      br
+      em
+        | Savon, teintures, maquillage, crèmes et baumes : les utiliser te donne +1sexy
+        | pour ton prochain jet
+    li
+      +checkbox
+      span animal de compagnie (précieux vivant)
+      br
+      em choisis et précise
+
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Se produire devant un public.
+      li Se produire devant une audience privée.
+      li Apparaître au côté d’un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

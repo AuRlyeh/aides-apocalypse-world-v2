@@ -1,0 +1,271 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'Le machiniste';
+    var actionstitle = 'Actions du machiniste';
+    var createtitle = 'Créer un machiniste';
+    var progressionFirst = [
+      'reçois +1cool (max cool+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois une nouvelle action de machiniste',
+      'reçois une nouvelle action de machiniste',
+      'reçois un gang (détaille-le) pour assurer la sécurité et commandement',
+      'ajoute 2 options pour ton atelier',
+      'ajoute une unité de soins intensifs à ton atelier pour bosser sur des gens',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Léa, Josué, Tai, Ethan, Bran, Jérémie,
+  | Amanuel, Justin, Jessica, Élise, Dylan,
+  | Adnan, Alan, Nils, Hélène, Lee,
+  | Kim, Adèle,
+  | Leone, Burdick, Olivier, Goldman,
+  | Marlan, Fauci, Hossfield, Lemma,
+  | Morrell, Ozair, Robinson, Lemieux,
+  | Whitmont, Cullen, Spector
+
+block helpgender
+  | homme, femme, ambigu, transgressif
+
+block helpphysique
+  | gras, maigrelet, voûté, sec,
+  | courtaud, bizarre
+
+block helpface
+  | quelconque, mignon, ouvert,
+  | expressif
+
+block helpeyes
+  | qui louche, calme, dansant, nerveux,
+  | appréciateur
+
+block helpclothes
+  | pratiques et de bidouilleur, de récup
+  | et de technicien, vintage et de technicien,
+  | de mécano
+
+block caracsset
+  ul.dot
+    li
+      | Cool-1, Dur=0, Sexy+1, Rusé+1, Zarb+2
+    li
+      | Cool=0, Dur-1, Sexy-1, Rusé+2, Zarb+2
+    li
+      | Cool+1, Dur-1, Sexy=0, Rusé+1, Zarb+2
+    li
+      | Cool+1, Dur+1, Sexy-1, Rusé=0, Zarb+2
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1 ou toutes les 2 questions suivantes :
+  ul.dot
+    li
+      | Lesquels d’entre vous sont les plus bizarres ?
+      | Pour ces personnages, marques Hx+1.
+    li
+      | Lequel d’entre vous est potentiellement le plus gros problème ?
+      | Pour ce personnage, marques Hx+2.
+  p.no-margin
+    | Pour tous les autres, marques Hx-1. Tu as d’autres choses à faire et à apprendre.
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | il te parle comme si c’était un
+    | objet et que tu avais tiré un 10+, que
+    | tu aies pris les choses me parlent
+    | ou pas. L’autre joueur et le MC vont
+    | répondre à tes questions en se partageant
+    | le boulot.
+  p
+    | À part dans ce cas-là, cette action ne
+    | marche pas avec les gens, jamais, seulement
+    | avec les choses.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong Les choses me parlent :
+      |
+      | dès que tu manipules ou que tu examines un objet
+      | intéressant, dés+zarb. Sur un succès, tu peux poser des questions au MC.
+      | #[strong Sur 10+], 3 questions. #[strong Sur 7-9], 1 question :
+      ul.dot
+        li qui s’est servi de cet objet en dernier avant moi ?
+        li qui a fabriqué ça ?
+        li si quelqu’un a eu des émotions fortes près de cet objet, lesquelles ?
+        li quels mots a-t-on prononcés récemment près de cet objet ?
+        li qu’est-ce qu’on a fait à, ou avec cet objet récemment ?
+        li qu’est-ce qui cloche dans cet objet et comment je peux l’arranger ?
+      | #[strong Sur 6-], fais comme si tu avais ouvert ton cerveau au maelström et que
+      | tu avais raté le jet.
+    li
+      +checkbox
+      strong Comme un pressentiment :
+      |
+      | au début de la session, dés+zarb. #[strong Sur 10+], retiens
+      | 1 et +1. #[strong Sur 7-9], retiens 1. À tout moment, toi ou le MC pouvez dépenser
+      | ce que tu retiens pour être déjà sur place doté de tout ce qu’il faut et de tout
+      | ce que tu dois savoir, avec une explication crédible ou pas. Si tu as retenu 1 et
+      | +1, tu reçois +1 à ton prochain jet à partir de maintenant. #[strong Sur 6-], le MC
+      | retient 1 et peut le dépenser pour que tu sois déjà là mais coincé, pris au piège
+      | ou enfermé d’une façon ou d’une autre.
+    li
+      +checkbox
+      strong Toujours raison :
+      |
+      | quand un personnage vient te voir pour un conseil, annonce-
+      | lui ce que tu penses honnêtement être la meilleure marche à suivre. S’il
+      | suit ton conseil, il reçoit un +1 sur tous les jets concernant ce problème, et
+      | vous cochez une bulle d’expérience chacun.
+    li
+      +checkbox
+      strong La réalité perd des pièces :
+      |
+      | un de tes outils ou une de tes créations est
+      | particulièrement réceptif au maelström psychique (+auspice). Choisis lequel
+      | ou laisse le choix aux mains du MC qui te le révélera en cours de jeu.
+    li
+      +checkbox
+      strong Intense à faire peur :
+      |
+      | quand tu agis face au danger, quand tu surveilles les arrières d’un allié ou quand tu es l’appât, dés+zarb au lieu de dés+cool.
+    li
+      +checkbox
+      strong Introspection :
+      |
+      | tu reçois +1zarb (zarb+3).
+
+
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | ton atelier
+    li
+      | 1 matos fait main
+      | ou 3 armes et/ou armures facilement trouvables.
+    li
+      | du bric-à-brac valant 6-troc
+    li
+      | des fringues qui collent à ton look (détaille-les)
+
+block uniqueability
+  h3 Atelier
+  p
+    | Décide de ce qu’il y a dans ton atelier. 3 éléments au choix :
+  table
+    tr
+      td
+        +checkbox
+        span un garage
+      td
+        +checkbox
+        span des merdouilles électroniques
+    tr
+      td
+        +checkbox
+        span une chambre noire
+      td
+        +checkbox
+        span
+          | de quoi fabriquer des pièces
+          | de rechange
+    tr
+      td
+        +checkbox
+        span une serre hydroponique
+      td
+        +checkbox
+        span du matériel radio
+    tr
+      td
+        +checkbox
+        span
+          | des assistants qualifiés
+          | (Carna, Thuy et Pamming, par exemple)
+      td
+        +checkbox
+        span un terrain d’essai
+    tr
+      td
+        +checkbox
+        span une casse pleine de pièces détachées
+      td
+        +checkbox
+        span une relique de l’Âge d’Or passé
+    tr
+      td
+        +checkbox
+        span un camion ou un van
+      td
+        +checkbox
+        span des pièges à con
+
+  p
+    | Quand tu te retranches dans ton atelier et que tu te consacres à bricoler
+    | quelque chose ou à étudier un truc quelconque, décide quoi et dis-le au MC.
+    | Le MC te répondra «d’accord, pas de problème, mais...» puis entre 1 et 4 de ces
+    | trucs ci-dessous :
+    ul.dot
+      li ça va prendre des heures/des jours/des semaines/des mois de boulot
+      li tu vas devoir choper/construire/réparer/comprendre ___ avant
+      li tu vas avoir besoin de ___ pour te filer un coup de main
+      li ça va te coûter une tétrachiée de pièces détachées
+      li le mieux que tu puisses faire c’est une version merdique, faiblarde et bancale
+      li ça veut dire prendre de gros risques pour ton équipe et toi
+      li tu vas devoir ajouter___ à ton atelier avant
+      li tu vas devoir tenter le coup plusieurs/des douzaines/des centaines de fois
+      li tu vas devoir démonter et récupérer les pièces de ___ pour le faire
+    | Le MC peut les articuler avec un «et» ou se sentir magnanime et ajouter un «ou».
+
+  p
+    | Une fois que tu as rempli tes prérequis, c’est bon, tu obtiens ce que tu voulais. Le
+    | MC lui donnera des caracs, ou une valeur marchande, ou n’importe quoi qui va bien.
+
+  .editbox-xs.grow-1
+    label Matos fait main
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Entretenir le matos délicat ou capricieux d’un riche PNJ.
+      li Réparer un matos high-tech d’un riche PNJ.
+      li Conduire des travaux de recherche pour un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | quelques sessions d’embauche de main-d’œuvre pour du travail simple ;
+      | le coût du matériel nécessaire à une réanimation par un médecin ;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

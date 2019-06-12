@@ -1,0 +1,291 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'La beauté fatale';
+    var actionstitle = 'Actions de la beauté fatale';
+    var createtitle = 'Créer une beauté fatale';
+    var progressionFirst = [
+      'reçois +1dur (max dur+2)',
+      'reçois +1sexy (max sexy+2)',
+      'reçois +1rusé (max rusé+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois une nouvelle action de beauté fatale',
+      'reçois une nouvelle action de beauté fatale',
+      'reçois un allié (cf, détail avec le MC)',
+      'reçois un gang (détaille-le) et commandement',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Neige, Pourpre, Ombre, AzurNeige, Pourpre, Ombre, Azur, Minuit, Scarlett, Violetta, Ambre, Rouge, Damas, Crépuscule, Émeraude, Rubis, Raksha, Jupon, Milan, Mousson, Smith, Animal, Baaba, Mélodie, Mar, Tavi, Absinthe, Miel
+
+block helpgender
+  | homme, femme, ambigu, transgressif
+
+block helpphysique
+  | adorable, svelte, superbe, musclé, anguleux
+
+block helpface
+  | lisse/rasé de près, doux, beau, soigné, d’enfant, qui attire l’œil
+
+block helpeyes
+  | calculateur, impitoyable, glaçant, désarmant, indifférent
+
+block helpclothes
+  | classiques, provocants, de luxe, décontractés, visiblement blindés
+
+block caracsset
+  ul.dot
+    li
+      | Cool+3, Dur-1, Sexy+1, Rusé+1, Zarb=0
+    li
+      | Cool+3, Dur-1, Sexy+2, Rusé=0, Zarb-1
+    li
+      | Cool+3, Dur-2, Sexy+1, Rusé+1, Zarb+1
+    li
+      | Cool+3, Dur=0, Sexy+1, Rusé+1, Zarb-1
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, demande à chacun des autres joueurs
+    | si tu peux avoir confiance en son personnage.
+  ul.dot
+    li
+      | Pour les personnages en qui tu peux avoir confiance, marques Hx-1.
+    li
+      | Pour les personnages en qui tu ne peux pas avoir confiance, marques Hx+3.
+  p.no-margin
+    | La sécurité ne t’intéresse pas. Tu es attiré par le danger.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | tu annules son spécial.
+    | Quel qu’il soit, rien de particulier ne se passe.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong Mortel & sexy :
+      |
+      | quand tu arrives dans une situation tendue, dés+sexy.
+      | #[strong Sur 10+], tu retiens 2. #[strong Sur 7-9], tu retiens 1. Tu dépenses ce que tu as retenu,
+      | 1 pour 1, pour regarder un PNJ présent droit dans les yeux, qui se fige ou
+      | flanche et ne peut rien faire jusqu’à ce que tu rompes le contact. #[strong Sur 6-], tes
+      | adversaires te prennent immédiatement pour leur principal problème.
+    li
+      +checkbox
+      strong Nerfs d’acier :
+      |
+      | quand tu agresses un PNJ, dés+cool au lieu de dés+dur.
+      | Quand tu agresses le personnage d’un autre joueur, dés+Hx au lieu de dés+dur.
+    li
+      +checkbox
+      strong Impitoyable :
+      |
+      | quand tu infliges du dégât, tu infliges +1dégât.
+    li
+      +checkbox
+      strong Vision de mort :
+      | 
+      | quand tu arrives sur un champ de bataille, dés+zarb. #[strong Sur 10+],
+      | nomme une personne qui va mourir et une personne qui va survivre.
+      | #[strong Sur 7-9], nomme une personne qui va mourir OU une personne qui va survivre. Ne
+      | désigne que des PNJ, pas les personnages d’autres joueurs. Le MC réalisera ta
+      | vision même si ça tient à peine debout. #[strong Sur 6-], tu vois ta propre mort,
+      | et en conséquence tu prends -1 pendant le reste de la bataille.
+    li
+      +checkbox
+      strong Instinct sans faille :
+      |
+      | quand tu fais le point et que tu prends en compte les
+      | réponses du MC pour agir, prends +2 au lieu de +1.
+    li
+      +checkbox
+      strong Réflexes improbables :
+      |
+      | la façon dont tu bouges sans fardeau compte
+      | comme une armure. Si tu es nu ou presque, 2-armure ; si ne tu portes rien de
+      | blindé, 1-armure. Si tu portes une armure, utilise l’armure à la place.
+
+block startinggear
+  p.help-text
+    | Tu débutes avec :
+  ul.help-text.dot
+    li
+      | 2 armes sur mesure
+    li
+      | du bric-à-brac valant 4-troc
+    li
+      | des fringues qui collent à ton look, y compris un accessoire valant 1-armure ou une armure valant 2-armure si tu le souhaites (détaille-le)
+
+block uniqueability
+  h3 Armes sur mesure
+  .columns
+    .col
+      h4 Armes à feu sur mesure
+      p
+        strong Base (1 au choix) :
+      ul
+        li
+          +checkbox
+          +checkbox
+          span pistolet (2-dégâts proche recharge bruyant)
+        li
+          +checkbox
+          +checkbox
+          span canon scié (3-dégâts proche recharge salissant)
+        li
+          +checkbox
+          +checkbox
+          span fusil (2-dégâts loin recharge bruyant)
+        li
+          +checkbox
+          +checkbox
+          span arbalète (2-dégâts proche lent)
+      p
+        strong Options (1 au choix) :
+      ul
+        li
+          +checkbox
+          +checkbox
+          span ouvragé (+précieux)
+        li
+          +checkbox
+          +checkbox
+          span antiquité (+précieux)
+        li
+          +checkbox
+          +checkbox
+          span semi-automatique (-recharge)
+        li
+          +checkbox
+          +checkbox
+          span tir en rafales (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span automatique (+zone)
+        li
+          +checkbox
+          +checkbox
+          span silencieux (-bruyant)
+        li
+          +checkbox
+          +checkbox
+          span puissant (proche/loin ou +1-dégât de loin)
+        li
+          +checkbox
+          +checkbox
+          span balles perces-blindage (+perforant)
+        li
+          +checkbox
+          +checkbox
+          span lunette (+loin ou +1-dégât de loin)
+        li
+          +checkbox
+          +checkbox
+          span imposant (+1-dégât)
+    .col
+      h4 Armes de contact sur mesure
+      p
+        strong Base (1 au choix) :
+      ul
+        li
+          +checkbox
+          +checkbox
+          span bâton (1-dégât contact zone)
+        li
+          +checkbox
+          +checkbox
+          span matraque (1-dégât contact)
+        li
+          +checkbox
+          +checkbox
+          span manche (1-dégât contact)
+        li
+          +checkbox
+          +checkbox
+          span chaîne (1-dégât contact zone)
+      p
+        strong Options (1 au choix) :
+      ul
+        li
+          +checkbox
+          +checkbox
+          span ouvragé (+précieux)
+        li
+          +checkbox
+          +checkbox
+          span antiquité (+précieux)
+        li
+          +checkbox
+          +checkbox
+          span masse (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span piques (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span lame (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span longue lame * (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span grosse lame * (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span plusieurs lames * (+1-dégât)
+        li
+          +checkbox
+          +checkbox
+          span dissimulé (+infini)
+        p.help-text
+          em * compte pour 2 options
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li Extorquer, braquer ou voler une riche population. 
+      li Commettre un meurtre commandité par un riche PNJ.
+      li Servir de garde du corps à un riche PNJ.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | le coût du matériel nécessaire à une réanimation par un médecin;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.

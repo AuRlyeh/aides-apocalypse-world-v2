@@ -1,0 +1,270 @@
+extends playbooklayout.pug
+
+block jsdefinitions
+  -
+    var title = 'L’ange gardien';
+    var actionstitle = 'Actions de l’ange gardien';
+    var createtitle = 'Créer un ange gardien';
+    var progressionFirst = [
+      'reçois +1cool (max cool+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois +1dur (max dur+2)',
+      'reçois +1zarb (max zarb+2)',
+      'reçois une nouvelle action d’ange gardien',
+      'reçois une nouvelle action d’ange gardien',
+      'reçois un fournisseur (cf, détail avec le MC)',
+      'reçois une action d’un autre livret',
+      'reçois une action d’un autre livret'
+    ];
+    var progressionSecond = [
+      'reçois +1 à n’importe quelle carac, max +3',
+      'mets ton personnage à la retraite, et crée un nouveau personnage à jouer',
+      'crée un second personnage à jouer, et maintenant tu en joues deux',
+      'change le livret de ton personnage',
+      'choisis 3 actions de base et gagne leur version avancée',
+      'gagne la version avancée des 3 autres actions de base'
+    ];
+
+block helpname
+  | Dou, Bon, Abe, Bouh, T, Kal, Bai, Char, Jav, Ruth, Wei, Jay, Nee, Kim, Lan, Di, Dez, Doc, Core, Roulettes, Buzz, Key, Gaby, Biz, Bish, Phil, Inch, Pogne, Suture.
+
+block helpgender
+  | homme, femme, ambigu, transgressif, dissimulé
+
+block helpphysique
+  | trapu, corpulent, sec, imposant, de grande bringue, baraqué
+
+block helpface
+  | amical, grave, usé, hagard, mignon, animé
+
+block helpeyes
+  | vif, dur, attentionné, brillant, rieur, clair
+
+block helpclothes
+  | fringes de travail, vêtements confortables et de travail, vêtements de récup et de travail
+
+block caracsset
+  ul.dot
+    li
+      | Cool+1, Dur=0, Sexy+1, Rusé+2, Zarb-1
+    li
+      | Cool+1, Dur+1, Sexy=0, Rusé+2, Zarb-1
+    li
+      | Cool-1, Dur+1, Sexy=0, Rusé+2, Zarb+1
+    li
+      | Cool+2, Dur=0, Sexy-1, Rusé+2, Zarb-1
+
+block hxquestions
+  p
+    | Après l’introduction, refaites un tour de table pour l’Hx et à ton tour, poses 1, 2 ou toutes les 3 questions suivantes :
+  ul.dot
+    li
+      | Lequel d’entre vous est, à mon avis, voué à se foutre en l’air ?
+      | Pour ce personnage, marques Hx-2.              
+    li
+      | Lequel d’entre vous m’a donné un coup de main quand j’en avais besoin et m’a aidé à sauver une vie ?
+      | Pour ce personnage, marques Hx+2.
+    li
+      | Lequel d’entre vous m’accompagne depuis un bout de temps et a vu tout ce que j’ai vu ?
+      | Pour ce personnage, marques Hx+3.
+  p.no-margin
+    | Pour tous les autres, marques Hx+1. Tu gardes les yeux ouverts.
+
+
+block special
+  p
+    | Si tu as un moment d’intimité avec un autre personnage,
+    | ton Hx avec lui sur ta fiche monte à +3,
+    | et il reçoit un +1 à son Hx avec toi, sur sa fiche.
+    | Si ça amène son Hx avec toi à +4,
+    | ça retombe à +1, comme d’habitude,
+    | et il coche donc une bulle d’expérience.
+
+block actionslist
+  ul
+    li
+      +checkbox
+      strong Sixième sens :
+      |
+      | quand tu ouvres ton cerveau au maelström psychique,
+      | tu jettes dés+rusé au lieu de dés+zarb.
+    li
+      +checkbox
+      strong Infirmerie :
+      |
+      | tu reçois une infirmerie, une unité de chirurgie avec du matos
+      | de soins intensifs, un labo pharmaceutique et deux infirmiers à tout
+      | faire (Shigusa et Mox, si ça se trouve). Mets-y des patients et tu peux travailler
+      | dessus comme un machiniste dans son atelier (
+      em cf
+      | ).
+    li
+      +checkbox
+      strong Compassion professionnelle :
+      |
+      | tu peux choisir de jeter dés+rusé au lieu
+      | de dés+Hx quand tu aides quelqu’un.
+    li
+      +checkbox
+      strong Médecin de guerre :
+      | 
+      | quand tu t’occupes de quelqu’un sans penser à
+      | combattre, tu gagnes +1armure.
+    li
+      +checkbox
+      strong Imposition des mains :
+      |
+      | quand tu poses tes mains peau contre peau
+      | sur une personne blessée et que tu lui ouvres ton cerveau, lances dés+zarb.
+      |
+      strong Sur 10+,
+      |
+      | soigne 1 segment.
+      |
+      strong Sur 7-9,
+      |
+      | soigne 1 segment mais tu ouvres ton cerveau, tu dois faire cette action ensuite.
+      |
+      strong Sur un échec
+      |
+      | : déjà, il n’est pas soigné.
+      | Ensuite, vous avez tous les deux ouvert votre cerveau
+      | au maelström psychique, sans protection ni préparation.
+      | Pour toi, comme pour ton patient si c’est le personnage d’un autre joueur, ça marche
+      | comme si vous aviez effectivement ouvert votre cerveau au maelström
+      | et que vous aviez raté votre jet. Si le patient appartient au MC, c’est ce
+      | dernier qui décide ce qu’il subit et s’il s’en tire.
+    li
+      +checkbox
+      strong La mort en face :
+      |
+      | quand quelqu’un est inconscient sous tes soins, tu peux l’utiliser comme un
+      |
+      strong auspice
+      | . Quand quelqu’un meurt sous tes soins, tu peux utiliser son corps comme un
+      |
+      strong auspice
+      | .
+
+block startinggear
+  p.help-text
+    | Choisis une arme petite mais utile :
+  ul.help-text
+    li
+      +checkbox
+      span revolver (2-dégâts proche recharge bruyant)
+    li
+      +checkbox
+      span automatique (2-dégâts proche bruyant)
+    li
+      +checkbox
+      span grosse lame (2-dégâts contact)
+    li
+      +checkbox
+      span canon scié (3-dégâts proche recharge salissant)
+    li
+      +checkbox
+      span taser (assommant-dégâts contact recharge)
+  p.help-text
+    | Tu débutes aussi avec :
+  ul.help-text.dot
+    li
+      | un kit d’ange gardien sans fournisseur
+    li
+      | du bric-à-brac valant 1-troc
+    li
+      | des fringues qui collent à ton look, y compris un accessoire valant 1-armure si tu le souhaites (détaille-le)
+
+block uniqueability
+  h3 Kit d’ange gardien
+  div
+    .float-right.col-3
+      .editbox-xs
+        label Réserves
+    p
+      | Ton kit d’ange gardien est plein de merdouilles : ciseaux, chiffons, rubans,
+      | aiguilles, colliers de serrage, bombes de froid, lingettes, alcool, garrots,
+      | coagulants injectables, sachets de sang instantané en poudre, tubes de
+      | cicatrisant, injecteurs d’aiguilles osseuses, chemodoses, biodoses, narcodoses
+      | en quantité et un défibrillateur pour quand on en arrive là. C’est
+      | assez gros pour remplir le coffre d’une bagnole. Quand tu t’en sers, dépense
+      | des réserves : tu peux dépenser 0-3 réserves par utilisation. Pour te
+      | réapprovisionner, ça te coûte 1-troc pour 2-réserves si les circonstances te
+      | permettent de trouver du matos médical.
+  p Tu commences le jeu avec 6-réserves.
+  p
+    | Pour
+    |
+    strong stabiliser et soigner quelqu’un à 9:00 ou plus :
+    |
+    | dés+réserves dépensées.
+    | Sur une réussite, tu le stabilises et le ramènes à 6:00 mais le MC
+    | choisit 1 possibilité suivante (sur 10+) ou 2 (sur 7-9) :
+  ul.dot
+    li Il se débat, et tu lui injectes une narcodose. Combien de temps sera-t-il dans le gaz ?
+    li La douleur et les drogues lui font bredouiller des vérités. Demandes-lui quel secret il laisse échapper.
+    li Il répond très bien au traitement. Récupères 1 des stocks dépensés si tu en as dépensé.
+    li Il est à ta merci. Que lui fais-tu ?
+    li L’évolution de son rétablissement t’en apprends un peu plus sur ton métier. Coche une bulle d’expérience.
+    li Il t’est redevable de ton temps, ton attention, tes ressources dépensées, et tu ne vas pas l’oublier.
+  p.no-margin Sur un échec, il encaisse 1-dégât à la place.
+  p
+    | Pour
+    |
+    strong accélérer la guérison de quelqu’un à 3:00 ou 6:00 :
+    |
+    | pas de dés. Le
+    | patient choisit : soit tu dépenses 1-stock et il passe 4 jours (3:00) ou toute une semaine (6:00)
+    | raide défoncé aux narcodoses, immobile mais aux anges, soit il attend
+    | que ça passe comme tout le monde.
+  p
+    | Pour
+    |
+    strong réanimer quelqu’un dont la vie est devenue insoutenable :
+    |
+    | dépenses 2-stock.
+    | Tu le ramènes, mais tu choisis comment. Choisis un dans la liste
+    | « quand la vie devient insoutenable », ou choisis un dans la liste suivante :
+  ul.dot
+    li Il revient et il a une énorme dette envers toi.
+    li Il revient avec une prothèse (détaille-la).
+    li Lui et toi revenez avec +1zarb (max +3).
+  p
+    | Pour
+    |
+    strong soigner un PNJ,
+    |
+    | dépenses 1-stock. Il est stable et il se remettra avec le temps.
+  p
+    +checkbox
+    strong Tu as un fournisseur.
+    |
+    | Au début de chaque session, gagnes 1-réserves (max 6-réserves).
+
+block barter
+  p
+    | Au début d’une session, dépenses 1- ou 2-troc selon le style de vie que tu mènes.
+    | Si tu ne peux pas ou ne veux pas, dis-le au MC et réponds à ses questions.
+  p
+    | Si tu as besoin de te renflouer pendant une session, dis au MC que tu voudrais faire un petit boulot :
+    ul.dot
+      li S’occuper de la santé d’une dizaine de familles ou plus.
+      li Servir d’ange gardien personnel à un riche PNJ.
+      li Servir de médecin de combat à un seigneur de guerre.
+      li Autres services négociés.
+  p
+    | Dépense 1-troc et tu peux obtenir, dans la limite des stocks disponibles :
+    br
+    em
+      | une nuit de luxe en excellente compagnie ;
+      | n’importe quelle arme, quel matos ou quelle fringue ni précieux ni high-tech ;
+      | une session de protection rapprochée par un individu violent ;
+      | la réparation d’un matos high-tech ;
+      | quelques sessions d’impôts à un seigneur de guerre ;
+      | quelques sessions d’entretien pièces et main-d’œuvre pour un véhicule haute performance et qui sert souvent ;
+      | des pots-de-vin, frais et cadeaux divers pour obtenir une entrevue avec presque n’importe qui.
+  p
+    | Pour de la meilleure came, prépare-toi à faire des arrangements particuliers.
+    | N’espère pas aller faire tes courses sur le domaine d’un taulier avec
+    | une poignée de verroterie en main et tomber sur du matos high-tech ou
+    | une vie de luxe éternelle.
